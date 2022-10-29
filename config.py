@@ -1,5 +1,7 @@
-fileOutput = "results.md"
-fileFiltered = "filtered.md"
+import os
+
+fileOutput = "output/results.md"
+fileFiltered = "output/filtered.md"
 postedDays = 1
 countries = [
     "Spain",
@@ -32,3 +34,4 @@ titleMustContainAnyOf = [
     "android",
     "mobile"
 ]
+os.mkdir("output")
