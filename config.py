@@ -1,6 +1,3 @@
-import os
-from pathlib import Path
-
 fileOutput = "output/results.md"
 fileFiltered = "output/filtered.md"
 viewedJobs = 'output/checked.txt'
@@ -17,7 +14,7 @@ countries = [
     "Chile"
 ]
 myExperienceIsLessThan = 6
-excludedTitleKeywords = [
+ignoreIfTitleContains = [
     "React Native",
     "Flutter",
     "Data Engineer",
@@ -28,7 +25,7 @@ excludedTitleKeywords = [
     "backend",
     "qa"
 ]
-excludedDescriptionKeywords = [
+ignoreIfDescriptionContains = [
     "React Native",
     "Flutter",
     "ALREADY LIVE IN A EU",
@@ -40,5 +37,3 @@ titleMustContainAnyOf = [
     "android",
     "mobile"
 ]
-
-Path("output").mkdir(parents=True, exist_ok=True)

@@ -57,7 +57,7 @@ def search(api, country):
 
         title = job["title"]
 
-        excludes = validation.containsExcludes(title, config.excludedTitleKeywords)
+        excludes = validation.containsExcludes(title, config.ignoreIfTitleContains)
         if len(excludes) > 0:
             saveJobExcludes(jobId, title, "", "Title contains excludes: " + " ".join(excludes))
             continue
@@ -79,7 +79,7 @@ def search(api, country):
         if not validation.experienceRequired(text, config.myExperienceIsLessThan):
             saveJobExcludes(jobId, title, text, "Min experience")
             continue
-        excludes = validation.containsExcludes(text, config.excludedDescriptionKeywords)
+        excludes = validation.containsExcludes(text, config.ignoreIfDescriptionContains)
         if len(excludes) > 0:
             saveJobExcludes(jobId, title, text, "Contains excluded keywords " + " ".join(excludes))
             continue

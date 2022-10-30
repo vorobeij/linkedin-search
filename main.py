@@ -1,7 +1,11 @@
+from pathlib import Path
+
 from linkedin_api import Linkedin
 
 import config
 from search import authConfig, search
+
+Path("output").mkdir(parents=True, exist_ok=True)
 
 if __name__ == '__main__':
     # f = open(config.fileFiltered, "w")
