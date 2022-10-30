@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 fileOutput = "output/results.md"
 fileFiltered = "output/filtered.md"
@@ -36,4 +37,4 @@ titleMustContainAnyOf = [
     "mobile"
 ]
 
-os.mkdir("output")
+Path("output").mkdir(parents=True, exist_ok=True)
