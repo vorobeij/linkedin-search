@@ -42,7 +42,7 @@ def search(api, country):
         # job_type="F",
         location_name=country,
         listed_at=config.postedDays * 86400,
-        limit=100
+        limit=config.limit
     )
 
     print(jobs)
@@ -50,7 +50,7 @@ def search(api, country):
         jobId = job["dashEntityUrn"].replace("urn:li:fsd_jobPosting:", "")
 
         if jobId in viewedJobIds:
-            print("Checked out on previous step " + jobId)
+            print(jobId + " seen")
             continue
 
         markChecked(jobId)

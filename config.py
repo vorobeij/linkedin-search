@@ -6,6 +6,7 @@ fileFiltered = "output/filtered.md"
 viewedJobs = 'output/checked.txt'
 keywords = "android"
 postedDays = 2
+limit = -1
 countries = [
     "Spain",
     "Cyprus",
@@ -24,6 +25,7 @@ excludedTitleKeywords = [
     "Security",
     "test",
     "Designer",
+    "backend",
     "qa"
 ]
 excludedDescriptionKeywords = [
@@ -31,7 +33,8 @@ excludedDescriptionKeywords = [
     "Flutter",
     "ALREADY LIVE IN A EU",
     "AOSP",
-    "C++"
+    "C++",
+    "not sponsor"
 ]
 titleMustContainAnyOf = [
     "android",

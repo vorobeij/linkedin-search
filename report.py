@@ -15,6 +15,7 @@ def saveJob(jobId, title, description):
 
 
 def saveJobExcludes(jobId, title, description, reason):
+    print(reason)
     f = open(config.fileFiltered, "a")
     f.write("# " + title + "\n\n")
     f.write(reason + "\n\n")
