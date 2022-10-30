@@ -2,7 +2,8 @@ import os
 
 fileOutput = "output/results.md"
 fileFiltered = "output/filtered.md"
-postedDays = 1
+keywords = "android"
+postedDays = 2
 countries = [
     "Spain",
     "Cyprus",
@@ -12,7 +13,7 @@ countries = [
     "Canada",
     "Chile"
 ]
-maxYears = 6
+myExperienceIsLessThan = 6
 excludedTitleKeywords = [
     "React Native",
     "Flutter",
@@ -34,4 +35,5 @@ titleMustContainAnyOf = [
     "android",
     "mobile"
 ]
+
 os.mkdir("output")

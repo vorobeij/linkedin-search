@@ -1,38 +1,18 @@
-import os
 from jproperties import Properties
-from linkedin_api import Linkedin
 
 import config
 import validation
+from report import saveJobExcludes, saveJob
 
 authConfig = Properties()
 with open('auth.properties', 'rb') as config_file:
     authConfig.load(config_file)
 
 
-def saveJob(jobId, title, description):
-    f = open(config.fileOutput, "a")
-    f.write("# " + title + "\n\n")
-    f.write("[linkedin](https://www.linkedin.com/jobs/search/?currentJobId=" + jobId + ")\n\n")
-    f.write(description + "\n\n")
-    f.write("\n\n==================\n\n")
-    f.close()
-
-
-def saveJobExcludes(jobId, title, description, reason):
-    f = open(config.fileFiltered, "a")
-    f.write("# " + title + "\n\n")
-    f.write(reason + "\n\n")
-    f.write("[linkedin](https://www.linkedin.com/jobs/search/?currentJobId=" + jobId + ")\n\n")
-    f.write(description + "\n\n")
-    f.write("\n\n==================\n\n")
-    f.close()
-
-
 def search(api, country):
     print("search " + country + "\n")
     jobs = api.search_jobs(
-        keywords="android",
+        keywords=config.keywords,
         # experience="4",
         # job_type="F",
         location_name=country,
@@ -64,7 +44,7 @@ def search(api, country):
         if not validation.containsVisaSupport(text):
             saveJobExcludes(jobId, title, text, "No visa support")
             continue
-        if not validation.experienceRequired(text, config.maxYears):
+        if not validation.experienceRequired(text, config.myExperienceIsLessThan):
             saveJobExcludes(jobId, title, text, "Min experience")
             continue
         excludes = validation.containsExcludes(text, config.excludedDescriptionKeywords)
@@ -73,16 +53,3 @@ def search(api, country):
             continue
 
         saveJob(jobId, title, text)
-
-
-if __name__ == '__main__':
-    f = open(config.fileFiltered, "w")
-    f.write("")
-    f.close()
-    f = open(config.fileOutput, "w")
-    f.write("")
-    f.close()
-
-    api = Linkedin(authConfig.get("email").data, authConfig.get("password").data)
-    for country in config.countries:
-        search(api, country)

@@ -20,7 +20,6 @@ def experienceRequired(description, maxYears):
     return True
 
 
-
 def containsExcludes(text, excludeKeywords):
     excluded = []
     for exclusion in excludeKeywords:
