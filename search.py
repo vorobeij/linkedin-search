@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from jproperties import Properties
 
 import config
@@ -7,6 +9,29 @@ from report import saveJobExcludes, saveJob
 authConfig = Properties()
 with open('auth.properties', 'rb') as config_file:
     authConfig.load(config_file)
+
+
+def markChecked(jobId):
+    f = open(config.viewedJobs, 'a')
+    f.write(jobId + "\n")
+    f.close()
+
+
+def cleanup(s):
+    return s.decode('utf-8').replace("\n", "")
+
+
+def loadViewedIds():
+    if not Path(config.viewedJobs).exists():
+        return []
+    f = open(config.viewedJobs, 'rb')
+    lines = f.readlines()
+    mapped = [cleanup(x) for x in lines]
+    f.close()
+    return set(mapped)
+
+
+viewedJobIds = loadViewedIds()
 
 
 def search(api, country):
@@ -23,6 +48,13 @@ def search(api, country):
     print(jobs)
     for job in jobs:
         jobId = job["dashEntityUrn"].replace("urn:li:fsd_jobPosting:", "")
+
+        if jobId in viewedJobIds:
+            print("Checked out on previous step " + jobId)
+            continue
+
+        markChecked(jobId)
+
         title = job["title"]
 
         excludes = validation.containsExcludes(title, config.excludedTitleKeywords)

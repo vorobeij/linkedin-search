@@ -3,6 +3,7 @@ from pathlib import Path
 
 fileOutput = "output/results.md"
 fileFiltered = "output/filtered.md"
+viewedJobs = 'output/checked.txt'
 keywords = "android"
 postedDays = 2
 countries = [
