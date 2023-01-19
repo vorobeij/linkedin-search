@@ -2,16 +2,17 @@ fileOutput = "output/results.md"
 fileFiltered = "output/filtered.md"
 viewedJobs = 'output/checked.txt'
 keywords = "android"
-postedDays = 2
+postedDays = 40
 limit = -1
 countries = [
+    "Cyprus"
+    "Poland",
     "Spain",
-    "Cyprus",
     "Netherlands",
     "Germany",
     "Georgia",
-    "Canada",
-    "Chile"
+    # "Canada",
+    # "Chile"
 ]
 myExperienceIsLessThan = 6
 ignoreIfTitleContains = [
@@ -23,7 +24,9 @@ ignoreIfTitleContains = [
     "test",
     "Designer",
     "backend",
-    "qa"
+    "qa",
+    "Sales",
+    "quality"
 ]
 ignoreIfDescriptionContains = [
     "React Native",
